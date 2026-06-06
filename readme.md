@@ -67,8 +67,8 @@ The application compares two classification models — **Random Forest** and **X
 
 | Model | Macro F1 | ROC-AUC |
 |---|---|---|
-| Random Forest | ~0.94 | ~0.998 |
-| XGBoost | ~0.78 | ~0.99 |
+| Random Forest | 0.9303 | 0.9976 |
+| XGBoost | 0.8493 | 0.9981 |
 
 Both models are trained with an 80/20 train-test split (stratified) and evaluated using 5-fold cross-validation.
 
