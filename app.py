@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
+import os
+import gdown
 
 # ─── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -45,9 +47,23 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ─── Drive File IDs ───────────────────────────────────────────────────────────
+DRIVE_FILES = {
+    "rf_model.pkl":      "1YyN_x29CZlLiIXuI_GZ6rqYqtVMBR0f3",
+    "xgb_model.pkl":     "17_-j2NaFjnan4ax8tQxyjPxVtHQbpTvj",
+    "label_encoder.pkl": "13xQbwscufKKZPyPFlIie3uIn7ciRURKk",
+}
+
+def download_models():
+    for filename, file_id in DRIVE_FILES.items():
+        if not os.path.exists(filename):
+            url = f"https://drive.google.com/uc?id={file_id}"
+            gdown.download(url, filename, quiet=False)
+
 # ─── Load Models ──────────────────────────────────────────────────────────────
-@st.cache_resource(show_spinner="Memuat model...")
+@st.cache_resource(show_spinner="Mengunduh & memuat model dari Google Drive...")
 def load_models():
+    download_models()
     rf_model  = joblib.load("rf_model.pkl")
     xgb_model = joblib.load("xgb_model.pkl")
     le        = joblib.load("label_encoder.pkl")
@@ -105,11 +121,7 @@ def compute_metrics(_rf_model, _xgb_model, _le):
 
 
 # ─── Init ─────────────────────────────────────────────────────────────────────
-try:
-    rf_model, xgb_model, le = load_models()
-except FileNotFoundError:
-    st.error("❌ File model tidak ditemukan. Pastikan `rf_model.pkl`, `xgb_model.pkl`, dan `label_encoder.pkl` ada di direktori yang sama dengan `app.py`.")
-    st.stop()
+rf_model, xgb_model, le = load_models()
 
 df      = load_data()
 metrics = compute_metrics(rf_model, xgb_model, le)
