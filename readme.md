@@ -4,7 +4,7 @@
 
 ![Preview](https://raw.githubusercontent.com/muktiprab/fertilizer_recommendation/source-code/Preview%20Fertilizer%20Recommendation.png)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fertilizer-recommendation-project.streamlit.app/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live%20Demo-FF4B4B?logo=streamlit&logoColor=white)](https://fertilizer-recommendation-project.streamlit.app/)
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-1.6.1-F7931E?logo=scikit-learn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-3.2.0-189fdd?logo=xgboost&logoColor=white)
